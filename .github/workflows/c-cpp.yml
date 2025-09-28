@@ -1,0 +1,23 @@
+name: C/C++ CI
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: install g++ compiler
+      run: sudo apt-get update && sudo apt-get install -y g++
+
+    - name: Build the C++ project
+      run: g++ oopBank\ Project\ +Extensions.cpp clsDeleteUserScreen.cpp clsCurrency.cpp roro.cpp -o BankSystem.exe
+
+    - name: Run the Bank System
+      run: ./BankSystem.exe
